@@ -1,0 +1,50 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    id("org.springframework.boot") version "2.7.5"
+    id("io.spring.dependency-management") version "1.0.15.RELEASE"
+    id("com.netflix.dgs.codegen") version "5.2.4"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
+}
+
+group = "com.example"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_17
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.3.0"))
+    implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
+    implementation("com.netflix.graphql.dgs:graphql-dgs-extended-scalars")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.github.javafaker:javafaker:1.0.2") {
+        exclude("org.yaml")
+    }
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+tasks.withType<com.netflix.graphql.dgs.codegen.gradle.GenerateJavaTask> {
+    generateClient = true
+    packageName = "com.example.dgs.generated"
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "17"
+    }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}

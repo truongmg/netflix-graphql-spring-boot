@@ -1,0 +1,39 @@
+type Query {
+    shows(titleFilter: String): [Show]
+    videos: [Video]
+}
+
+interface Video {
+    title: String!
+}
+
+type Show implements Video {
+    id: Int!
+    title: String!
+    releaseYear: Int
+    reviews: [Review]
+}
+
+type Movie implements Video {
+    title: String!
+    length: Int
+}
+
+type Review {
+    username: String
+    starScore: Int
+    submittedDate: DateTime
+}
+
+type Mutation {
+    addReview(review: SubmittedReview): [Review]
+}
+
+input SubmittedReview {
+    showId: Int!
+    username: String!
+    starScore: Int!
+}
+
+scalar DateTime
+scalar Upload
