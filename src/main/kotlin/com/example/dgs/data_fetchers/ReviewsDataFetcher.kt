@@ -23,8 +23,8 @@ class ReviewsDataFetcher(private val reviewService: ReviewService) {
     val reviewsDataLoader: DataLoader<Int, List<Review>> = dfe.getDataLoader(ReviewsDataLoader::class.java)
 
     logger.info("load reviews called for show ${show.id}")
-    val review = reviewsDataLoader.load(show.id)
-    return review.thenApply { list -> DataFetcherResult.newResult<List<Review>>().data(list).localContext(show).build() }
+    val reviews = reviewsDataLoader.load(show.id)
+    return reviews.thenApply { list -> DataFetcherResult.newResult<List<Review>>().data(list).localContext(show).build() }
   }
 
   @DgsMutation
@@ -38,7 +38,7 @@ class ReviewsDataFetcher(private val reviewService: ReviewService) {
   fun starScore(dfe: DgsDataFetchingEnvironment): Int {
     val show = dfe.getLocalContext<Show>()
     val review = dfe.getSource<Review>()
-    if (show.title == "Ozark") {
+    if (show != null && show.title == "Ozark") {
       return 3;
     }
     return review.starScore?: 0

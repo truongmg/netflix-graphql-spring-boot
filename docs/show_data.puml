@@ -1,0 +1,44 @@
+@startjson
+#highlight "shows"
+#highlight "shows" / "reviews"
+{
+    "shows":
+      {
+        "id": 1,
+        "title": "Stranger Things",
+        "releaseYear": 2016,
+        "reviews": [
+          {
+            "username": "leonida.abshire",
+            "starScore": 3,
+            "submittedDate": "2022-07-13T23:52:54.666Z"
+          },
+          {
+            "username": "theo.beer",
+            "starScore": 1,
+            "submittedDate": "2022-02-26T12:12:01.585Z"
+          },
+          {
+            "username": "santos.prosacco",
+            "starScore": 2,
+            "submittedDate": "2022-11-29T14:39:24.693Z"
+          },
+          {
+            "username": "roxie.nader",
+            "starScore": 1,
+            "submittedDate": "2022-09-02T08:28:14.048Z"
+          },
+          {
+            "username": "albert.weissnat",
+            "starScore": 1,
+            "submittedDate": "2022-07-26T18:37:13.027Z"
+          },
+          {
+            "username": "jeremy.trantow",
+            "starScore": 5,
+            "submittedDate": "2022-09-17T20:53:22.910Z"
+          }
+        ]
+      }
+}
+@endjson

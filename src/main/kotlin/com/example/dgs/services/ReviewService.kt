@@ -56,15 +56,15 @@ class DefaultReviewService(private val showsService: ShowsService) : ReviewServi
 
   override fun saveReview(review: SubmittedReview) {
     val reviewsForMovie = reviews.getOrPut(review.showId) { mutableListOf() }
-    val review = Review(
+    val newReview = Review(
       username = review.username,
       starScore = review.starScore,
       submittedDate = OffsetDateTime.now(ZoneOffset.UTC)
     )
 
-    reviewsForMovie.add(review)
+    reviewsForMovie.add(newReview)
 
-    logger.info("review added {}", review)
+    logger.info("review added {}", newReview)
   }
 
 }

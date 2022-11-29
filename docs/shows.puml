@@ -1,0 +1,27 @@
+@startuml
+autonumber
+Client -> Graphql: query shows()
+
+Graphql -> ShowsDataFetcher: shows()
+
+ShowsDataFetcher -> ShowsService: shows()
+
+return list of shows
+
+ShowsDataFetcher -> Graphql: shows
+
+Graphql -> ReviewsDataFetcher: reviews()
+
+ReviewsDataFetcher -> ReviewsDataLoader: load(showId)
+
+ReviewsDataLoader -> ReviewsService: reviewForShows(showIds)
+
+return list of reviews for each show
+
+ReviewsDataLoader -> ReviewsDataFetcher: reviews
+
+ReviewsDataFetcher -> Graphql: reviews
+
+Graphql -> Client: shows + reviews
+
+@enduml

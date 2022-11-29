@@ -14,7 +14,7 @@ class ShowsDataFetcher(private val showsService: ShowsService) {
 
   @DgsQuery
   fun shows(@InputArgument titleFilter: String): List<Show> {
-    logger.info("load shows with filter: $titleFilter")
+    logger.info("load shows")
 
     return showsService.shows().filter { it.title.contains(titleFilter) }
   }

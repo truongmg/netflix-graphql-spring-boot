@@ -1,0 +1,21 @@
+
+
+@startjson
+#highlight "videos"
+#highlight "videos" / "0" / "__typename"
+#highlight "videos" / "1" / "__typename"
+{
+    "videos": [
+      {
+        "title": "Stranger Things",
+        "releaseYear": 2016,
+        "__typename": "Show"
+      },
+      {
+        "title": "Rush Hour",
+        "length": 125,
+        "__typename": "Movie"
+      }
+    ]
+}
+@endjson

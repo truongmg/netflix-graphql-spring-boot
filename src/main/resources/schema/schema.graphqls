@@ -1,4 +1,7 @@
 type Query {
+    hello: String
+
+    "Description for the query"
     shows(titleFilter: String): [Show]
     videos: [Video]
 }
@@ -7,7 +10,12 @@ interface Video {
     title: String!
 }
 
+"Description for the type"
 type Show implements Video {
+    """
+    Description for field
+    Supports **multi-line** description for your [API](http://example.com)!
+    """
     id: Int!
     title: String!
     releaseYear: Int
